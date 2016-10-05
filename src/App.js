@@ -1,15 +1,33 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import ReactBootstrap from 'react-bootstrap';
+import $ from 'jquery';
 import './App.css';
 
 class App extends Component {
+	
+	constructor(props){
+		super(props);
+		this.state = {
+			images: [
+				"images/cat1.jpg",
+				"images/cat2.jpg",
+				"images/cat3.jpg",
+				"images/cat4.jpg",
+				"images/cat5.jpg",
+				"images/cat6.jpg",
+				"images/cat7.jpg",
+				"images/cat8.jpg",
+				"images/cat9.jpg",
+				"images/cat10.jpg"
+			],
+			activeImage: null
+		}
+	}
+	
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
+        
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
