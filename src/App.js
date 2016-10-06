@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import ReactBootstrap from 'react-bootstrap';
 import $ from 'jquery';
 import './App.css';
+import './catSelected';
+import { ThumbnailImage } from './thumbnailImage';
+import { ActiveImage } from './activeImage';
+import './deselectCat';
 
 class App extends Component {
 	
@@ -26,14 +30,33 @@ class App extends Component {
 	
   render() {
     return (
-      <div className="App">
-        
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
+      <div className='container'>
+				{ this.state.activeImage !== null ?
+					<ActiveImage 
+						image={this.state.images[this.state.activeImage]}
+						onClose={ this.deselectCat }/> : null
+				}
+
+				<div className='thumbnails'>
+					{ this.state.images.map((image, i) => {
+						var component = this;
+							return (
+								<ThumbnailImage 
+									key={ i } 
+									image={ image }
+									onSelect={ component.onCatSelect.bind(component, i) } 
+								/>
+							)
+					})}
+				</div>
+			</div>
+    )
   }
+
+	onCatSelect(i) {
+		this.props.catSelected(i);
+	}
+	
 }
 
 export default App;
